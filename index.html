@@ -6,6 +6,14 @@
 </head>
 <body>
 <script>
+
+let gamesPlayed = 0
+let gamesWon = 0
+let gamesLost = 0
+game()
+while(gamesPlayed != 5){
+  game()
+}
 function computerPlay(){
   number = Math.random();
   if (number <= 0.33){
@@ -14,37 +22,44 @@ function computerPlay(){
   else if (number <= 0.66){
     return 'paper'
   }
-  else{
+  else{ 
     return 'scissor'
   }
 }      
 function RPS(playerSelection, computerSelection){
   computerSelection = computerPlay()
   playerSelection = playerSelection.toLowerCase()
-  if (playerSelection == computerSelection)
-    return `It's a draw you both played ${playerSelection}`
-  else if (playerSelection == "rock" && computerSelection == "scissors")
-    return "You won! The computer played scissor"
-  else if (playerSelection == "rock" && computerSelection == "paper")
-    return "You lost! The computer played paper"
-  else if (playerSelection == "paper" && computerSelection == "rock")
-    return "You won! The computer played rock"
-  else if (playerSelection == "paper" && computerSelection == "scissor")
-    return "You lost! The computer played scissor"
-  else if (playerSelection == "scissor" && computerSelection == "rock")
-    return "You lost! The computer played rock"
-  else if (playerSelection == "scissor" && computerSelection == "paper")
-    return "You won! The computer played paper"
-  else return "You didn't enter the right input"
-
-}
-function game(RPS){
-  console.log(RPS)
+  outcome = ""
   
+  if (playerSelection == computerSelection)
+    return result = `It's a draw you both played ${playerSelection}`, gamesPlayed++
+  else if (playerSelection == "rock" && computerSelection == "scissor")
+    return result= "You won! The computer played scissor", gamesPlayed++, gamesWon++
+  else if (playerSelection == "rock" && computerSelection == "paper")
+    return result = "You lost! The computer played paper", gamesPlayed++, gamesLost++
+  else if (playerSelection == "paper" && computerSelection == "rock")
+    return result = "You won! The computer played rock", gamesPlayed++, gamesWon++
+  else if (playerSelection == "paper" && computerSelection == "scissor")
+    return result = "You lost! The computer played scissor", gamesPlayed++, gamesLost++
+  else if (playerSelection == "scissor" && computerSelection == "rock")
+    return result = "You lost! The computer played rock", gamesPlayed++, gamesLost++
+  else if (playerSelection == "scissor" && computerSelection == "paper")
+    return result = "You won! The computer played paper", gamesPlayed++, gamesWon++
+  else return result = "You didn't enter the right input", gamesPlayed++
+  console.log(computerSelection)
+
 }
 
-
-
+function game(){
+  if (gamesPlayed == 5){
+    gamesPlayed = 0
+    gamesLost = 0
+    gamesWon = 0
+  }
+  playerSelection = window.prompt("Do you choose Rock Paper or Scissor")
+  RPS(playerSelection)
+  return window.alert(result), window.alert(`You have played ${gamesPlayed} games, the current score is ${gamesWon} - ${gamesLost}`)
+}
  </script>  
 </body>
 </html>
